@@ -1,0 +1,53 @@
+.button {
+    background-color: #fff;
+    border: none;
+    border-radius: 12px;
+    /* display: inline-block; */
+    /* padding: 18px 40px; */
+    /* width: 100%; */
+    width: auto;
+    cursor: pointer;
+    transition: all 200ms;
+}
+
+.title {
+    font-family: Giga Sans, sans-serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: #111;
+    text-transform: uppercase;
+    height: 18px;
+}
+
+@-moz-document url-prefix() {
+    .title {
+        padding-top: 2px;
+    }
+}
+
+/* Mods */
+
+.s {
+    padding: 0 24px;
+    height: 48px;
+}
+
+.m {
+    padding: 0 32px;
+    height: 64px;
+}
+
+.button:hover {
+    transform: scale(1.02);
+}
+
+.button:active {
+    transform: scale(1);
+}
+
+.disabled {
+    cursor: nodrop;
+    opacity: 0.5;
+}

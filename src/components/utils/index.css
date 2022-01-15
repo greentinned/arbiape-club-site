@@ -1,0 +1,27 @@
+.visibleLg, .visibleMd {
+    display: none !important;
+}
+.hiddenMd {
+    display: block !important;
+}
+@media only screen and (min-width:768px){
+    .visibleMd {
+        display: block !important;
+    }
+}
+@media only screen and (min-width:992px){
+    .visibleLg {
+        display: block !important;
+    }
+}
+@media only screen and (min-width:768px){
+    .hiddenMd {
+        display: none !important;
+    }
+}
+@media only screen and (min-width:768px) and (max-width:992px){
+    .hiddenOnlyMd {
+        display: none !important
+    }
+}
+

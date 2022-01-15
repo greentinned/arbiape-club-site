@@ -1,0 +1,85 @@
+body,
+html {
+    background-color: #000;
+    color: #fff;
+    font-family: Prompt, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    height: 100%;
+    line-height: 26px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#preact_root {
+    height: 100%;
+}
+
+.container {
+    padding-top: 48px;
+    padding-bottom: 48px;
+    max-width: 1024px;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        padding-top: 0;
+    }
+}
+
+/* Typography */
+
+@font-face {
+    font-family: Giga Sans;
+    src: url(/assets/fonts/GigaSans-BlackItalic.woff2) format("woff2");
+}
+
+.hero,
+h1,
+h2,
+input {
+    font-family: Giga Sans, sans-serif;
+}
+
+.hero {
+    color: #24ff00;
+    font-size: 96px;
+    line-height: initial;
+    text-transform: uppercase;
+}
+
+h1,
+h2 {
+    line-height: 2.5rem;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 48px;
+    margin: 0px 0px 24px;
+}
+
+h2 {
+    font-size: 32px;
+    margin: 0px 0px 8px;
+}
+
+h3 {
+    margin: 0px 0px 8px;
+    font-family: Prompt, sans-serif;
+    font-size: 32px;
+    font-style: italic;
+    font-weight: 200;
+    line-height: 1.2;
+    color: #91c3cc;
+    text-transform: uppercase;
+}
+
+p {
+	margin: 0;
+}

@@ -1,0 +1,150 @@
+.left {
+}
+
+.right {
+}
+
+.img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.connect {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 48px;
+}
+.connect button {
+    width: 100%;
+}
+
+.mint {
+    background: #9561d4;
+    margin-top: 48px;
+    padding: 32px;
+}
+
+.mint .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mint .form h2 {
+    margin: 0;
+}
+.mint .input {
+    background-color: transparent;
+    border: 3px solid #fff;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin: 10px 0;
+    padding: 18px 16px;
+    text-transform: uppercase;
+    min-width: 256px;
+}
+
+@media only screen and (min-width: 768px) {
+    .mint .form {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+}
+@media only screen and (min-width: 768px) {
+    .features {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    /* .features > div:not(:first-child) { */
+    /*     margin-left: 16px; */
+    /* } */
+}
+.featureItem {
+    margin-top: 24px;
+}
+.featureItem button {
+    margin-top: 16px;
+}
+
+.roadmap {
+    margin-top: 48px;
+}
+
+.roadmapItem {
+    position: relative;
+}
+
+* + .roadmapItem {
+    margin-top: 64px;
+}
+
+.roadmapItem img {
+    margin-top: 24px;
+}
+
+@media screen and (min-width: 992px) {
+    .glitches:after {
+        bottom: -130px;
+        content: url(/assets/images/glitches_arrow.png);
+        display: block;
+        position: absolute;
+        right: 320px;
+        transform: scale(0.6);
+    }
+
+    .giveaways:after {
+        bottom: -180px;
+        content: url(/assets/images/giveaways_arrow.png);
+        display: block;
+        left: 50px;
+        position: absolute;
+        transform: scale(0.6);
+    }
+
+    .marketing:after {
+        bottom: -160px;
+        content: url(/assets/images/marketing_arrow.png);
+        display: block;
+        position: absolute;
+        right: 400px;
+        transform: scale(0.6);
+    }
+
+    .marketplace:after {
+        bottom: -175px;
+        content: url(/assets/images/marketplace_arrow.png);
+        display: block;
+        left: 75px;
+        position: absolute;
+        transform: scale(0.6);
+    }
+
+    .innovation:after {
+        bottom: -165px;
+        content: url(/assets/images/innovation_arrow.png);
+        display: block;
+        left: 270px;
+        position: absolute;
+        transform: scale(0.6);
+    }
+
+    .apeclub:after {
+        bottom: -200px;
+        content: url(/assets/images/apeclub_arrow.png);
+        display: block;
+        left: 115px;
+        position: absolute;
+        transform: scale(0.8);
+    }
+}
