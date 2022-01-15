@@ -4,6 +4,7 @@ import { Icons } from "../icons";
 import WalletButton from "../wallet_button";
 import RefButton from "../ref_button";
 import "../../style/utils.css";
+import basename from "../../utils/baseroute";
 import s from "./style.css";
 import Button from "../button";
 
@@ -124,7 +125,7 @@ const Home: FunctionalComponent<HomeProps> = (props) => {
                             ARBIAPE L2 CLUB
                         </h1>
                         <img
-                            src="/assets/images/overview.png"
+                            src={`${basename}/assets/images/overview.png`}
                             class={cn(s.img, hiddenMd)}
                         />
                         <Mint
@@ -156,7 +157,7 @@ const Home: FunctionalComponent<HomeProps> = (props) => {
                         />
                     </div>
                     <img
-                        src="/assets/images/overview.png"
+                        src={`${basename}/assets/images/overview.png`}
                         class={cn(s.img, visibleMd)}
                     />
                 </div>
@@ -198,7 +199,7 @@ const Home: FunctionalComponent<HomeProps> = (props) => {
                     </div>
                     <div class="col-lg-4">
                         <img
-                            src="/assets/images/glitches.png"
+                            src={`${basename}/assets/images/glitches.png`}
                             class={s.img}
                         />
                     </div>
@@ -271,7 +272,7 @@ const Home: FunctionalComponent<HomeProps> = (props) => {
                             stay & accrue the value.
                         </p>
                         <img
-                            src="/assets/images/sweeper.png"
+                            src={`${basename}/assets/images/sweeper.png`}
                             class={s.img}
                         />
                     </div>
@@ -307,7 +308,7 @@ const Home: FunctionalComponent<HomeProps> = (props) => {
 
                     <div class="col-lg-8 col-lg-offset-2">
                         <img
-                            src="/assets/images/apegames.png"
+                            src={`${basename}/assets/images/apegames.png`}
                             class={s.img}
                         />
                     </div>
