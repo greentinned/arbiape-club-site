@@ -52,7 +52,7 @@ const Description: FunctionalComponent<{ class?: string }> = ({
     class: className,
 }) => {
     return (
-        <>
+        <div class={s.description}>
             <h3 class={hiddenMd}>Meet the Apes</h3>
             <p class={className}>
                 AAC is a collection of 10,000 ArbiApe NFTs—unique
@@ -64,7 +64,7 @@ const Description: FunctionalComponent<{ class?: string }> = ({
                 on the Arbitrum network, and will be listed on all
                 major NFT marketplaces.
             </p>
-        </>
+        </div>
     );
 };
 
