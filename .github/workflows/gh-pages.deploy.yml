@@ -18,13 +18,13 @@ jobs:
           npm run build
           
       - name: Add .nojekyll file
-        run: touch ./out/.nojekyll
+        run: touch ./build/.nojekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.6.1
         with:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: out
+          FOLDER: build
           CLEAN: true
 
