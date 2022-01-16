@@ -57,8 +57,7 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
                         }
                         onInput={(e: any) => {
                             const val = parseInt(e.target.value);
-                            val > 0 &&
-                                setAmount(parseInt(e.target.value));
+                            val >= 1 && setAmount(val);
                         }}
                     />
                     <IconButton
