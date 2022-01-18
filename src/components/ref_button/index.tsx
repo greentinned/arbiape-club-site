@@ -1,7 +1,7 @@
 import { FunctionalComponent as FC, h } from "preact";
 import { useState } from "preact/hooks";
 import copyToCb from "copy-to-clipboard";
-import { addressToReferralCode } from "../../utils";
+import { addressToReferralCode } from "../../utils/referral";
 import Button from "../button";
 
 interface RefButtonProps {

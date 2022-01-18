@@ -19,6 +19,7 @@
     color: #111;
     text-transform: uppercase;
     height: 18px;
+    white-space: nowrap;
 }
 
 @-moz-document url-prefix() {

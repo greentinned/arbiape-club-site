@@ -1,15 +1,16 @@
-import { FunctionalComponent, h, Fragment, VNode } from "preact";
+import { FunctionalComponent, h, VNode } from "preact";
 import cn from "classnames";
 import { Icons } from "../icons";
 import WalletButton from "../wallet_button";
 import RefButton from "../ref_button";
 import "../../style/utils.css";
-import basename from "../../utils/baseroute";
+import basename from "../../utils/route";
 import s from "./style.css";
 import Button from "../button";
 import IconButton from "../icon_button";
 import Icon from "../icon";
 import { useState } from "preact/hooks";
+import MintButton from "../mint_button";
 
 const hiddenMd = "hidden-md hidden-lg hidden-xl";
 const visibleMd = "hidden-xs hidden-sm";
@@ -65,7 +66,12 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
                         onClick={() => setAmount(amount + 1)}
                     />
                 </div>
-                <Button title="Connect" />
+                <MintButton
+                    address={account}
+                    price={amount * 0.05}
+                    onMint={() => { }}
+                    onConnect={connect}
+                />
             </form>
         </div>
     );

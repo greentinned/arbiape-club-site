@@ -16,7 +16,7 @@ const WalletButton: FC<WalletButtonProps> = (props) => {
         <Button
             class={className}
             title={address ? fmtAddress(address) : "Connect"}
-            onClick={address ? onConnect : undefined}
+            onClick={address ? undefined : onConnect}
         />
     );
 };
