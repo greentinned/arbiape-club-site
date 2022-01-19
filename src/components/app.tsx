@@ -33,51 +33,43 @@ const App: FunctionalComponent = () => {
         }
     }
 
-    useEffect(function() {
-        const _setProvider = async () => {
+    useEffect(() => {
+        const detectAndSetProvider = async () => {
             const provider = await detectEthereumProvider();
-            console.log(provider);
             setProvider(provider);
         };
-        _setProvider();
+        detectAndSetProvider();
     }, []);
 
-    useEffect(
-        function() {
-            if (provider) {
-                provider.on("accountsChanged", onAccountsChanged);
-                provider.on("chainChanged", onChainChanged);
+    useEffect(() => {
+        if (provider) {
+            provider.on("accountsChanged", onAccountsChanged);
+            provider.on("chainChanged", onChainChanged);
 
-                return function() {
-                    provider.removeListener(
-                        "accountsChanged",
-                        onAccountsChanged
-                    );
-                    provider.removeListener(
-                        "chainChanged",
-                        onChainChanged
-                    );
-                };
-            }
-        },
-        [provider]
-    );
-
-    useEffect(
-        function() {
-            const setupProvider = async () => {
-                if (provider) {
-                    const cId = await provider.request({
-                        method: "eth_chainId",
-                    });
-                    console.log(cId);
-                    onChainChanged(cId);
-                }
+            return function() {
+                provider.removeListener(
+                    "accountsChanged",
+                    onAccountsChanged
+                );
+                provider.removeListener(
+                    "chainChanged",
+                    onChainChanged
+                );
             };
-            setupProvider();
-        },
-        [provider]
-    );
+        }
+    }, [provider]);
+
+    useEffect(() => {
+        const getChainIdAndNotify = async () => {
+            if (provider) {
+                const cId = await provider.request({
+                    method: "eth_chainId",
+                });
+                onChainChanged(cId);
+            }
+        };
+        getChainIdAndNotify();
+    }, [provider]);
 
     return (
         <div id="preact_root">
