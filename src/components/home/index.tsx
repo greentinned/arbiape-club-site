@@ -183,6 +183,7 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
                     price={amount * parseFloat(price)}
                     onMint={async () => await mint()}
                     onConnect={connect}
+                    disabled={!correctChainId}
                 />
             </div>
         </div>

@@ -4,6 +4,7 @@ import Button from "../button";
 interface MintButtonProps {
     address?: string;
     price?: number;
+    disabled?: boolean;
     onMint?(): void;
     onConnect?(): void;
     class?: string;
@@ -13,6 +14,7 @@ const MintButton: FC<MintButtonProps> = (props) => {
     const {
         address,
         price,
+        disabled,
         onMint,
         onConnect,
         class: className,
@@ -25,6 +27,7 @@ const MintButton: FC<MintButtonProps> = (props) => {
                     ? `Mint (${price ? price.toFixed(2) : "—"} eth)`
                     : "Connect"
             }
+            disabled={disabled}
             onClick={address ? onMint : onConnect}
         />
     );
