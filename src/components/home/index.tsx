@@ -111,8 +111,8 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
         }
     }
 
-    async function mint(e: any) {
-        e.preventDefault();
+    async function mint() {
+        // e.preventDefault();
 
         const value = new BigNumber(
             web3.utils.toWei(price)
@@ -181,7 +181,7 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
                 <MintButton
                     address={account}
                     price={amount * parseFloat(price)}
-                    onMint={mint}
+                    onMint={async () => await mint()}
                     onConnect={connect}
                 />
             </div>
