@@ -6,7 +6,7 @@ import usePersistedStore from "../hooks/usePersistedStore";
 import Home from "./home";
 
 const App: FunctionalComponent = () => {
-    const [account, setAccount] = usePersistedStore("address", "");
+    const [account, setAccount] = usePersistedStore("account", "");
     const [chainId, setChainId] = usePersistedStore("chainId", "");
     const [provider, setProvider] = usePersistedStore("provider", 0);
     const [error, setError] = useState(null);

@@ -3,6 +3,8 @@
 // };
 export default {
     webpack(config, env, helpers, options) {
+        config.node.process = 'mock';
+        config.node.Buffer = true;
 
         const publicPath = process.env.GITHUB_PAGES
             ? `/${process.env.GITHUB_PAGES}/`

@@ -23,13 +23,15 @@
   },
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",
+    "bignumber.js": "^9.0.2",
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",
     "flexboxgrid2": "^7.2.1",
     "preact": "^10.3.1",
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1",
-    "qs": "^6.10.3"
+    "qs": "^6.10.3",
+    "web3": "^1.7.0"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.5",

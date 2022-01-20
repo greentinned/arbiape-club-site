@@ -1,19 +1,57 @@
 import { FunctionalComponent, h, VNode } from "preact";
+import { useEffect, useState } from "preact/hooks";
 import cn from "classnames";
+import Web3 from "web3";
+import BigNumber from "bignumber.js";
+import basename from "../../utils/route";
+import "../../style/utils.css";
+import s from "./style.css";
 import { Icons } from "../icons";
+import Icon from "../icon";
+import IconButton from "../icon_button";
 import WalletButton from "../wallet_button";
 import RefButton from "../ref_button";
-import "../../style/utils.css";
-import basename from "../../utils/route";
-import s from "./style.css";
-import Button from "../button";
-import IconButton from "../icon_button";
-import Icon from "../icon";
-import { useState } from "preact/hooks";
 import MintButton from "../mint_button";
+import {
+    NFT_CONTRACT_ABI,
+    MINT_CONTRACT_ABI,
+} from "../../data/chain_info";
 
 const hiddenMd = "hidden-md hidden-lg hidden-xl";
 const visibleMd = "hidden-xs hidden-sm";
+
+// dev
+// const rpc = "https://rinkeby.arbitrum.io/rpc";
+// const mintAddress = "0x6c933164bc8F752B885Fd8B105Ea1F34f83a88c8";
+// const nftAddress = "0xC1C87A24A77EafE1fa2E8009DCAF8cFfEB6C9cC7";
+// const defaultRef = "0x6c933164bc8F752B885Fd8B105Ea1F34f83a88c8";
+// const mainChainIds = [421611, "0x66eeb"];
+
+// prod
+const rpc = "https://arb1.arbitrum.io/rpc";
+const mintAddress = "0xfaA928BDAdD0Ee68827fBA6e321efDA650923da0";
+const nftAddress = "0xaf730246e5d2c32985f47425aeecc46f5b0a94a5";
+const defaultRef = "0xcb7114e364bEA59dDeEfdFA4B869787D4318A3aF";
+const mainChainIds = [42161, "0xa4b1"];
+
+function addMainnetNetwork(provider: any) {
+    provider.request({
+        method: "wallet_addEthereumChain",
+        params: [
+            {
+                chainId: "0xa4b1",
+                chainName: "Arbitrum One",
+                nativeCurrency: {
+                    name: "Ethereum",
+                    symbol: "AETH",
+                    decimals: 18,
+                },
+                rpcUrls: ["https://arb1.arbitrum.io/rpc"],
+                blockExplorerUrls: ["https://arbiscan.io"],
+            },
+        ],
+    });
+}
 
 interface MintProps {
     chainId: any;
@@ -26,7 +64,6 @@ interface MintProps {
 }
 
 const Mint: FunctionalComponent<MintProps> = (props) => {
-    // TODO: add logic
     const {
         chainId,
         error,
@@ -36,11 +73,75 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
         refId,
         class: className,
     } = props;
+
+    const [price, setPrice] = useState("");
+    const [counter, setCounter] = useState(0);
+    const [mineIds, setMine] = useState([]);
     const [amount, setAmount] = useState(1);
+
+    const web3 = new Web3(provider || rpc);
+    const Nft = new web3.eth.Contract(
+        NFT_CONTRACT_ABI as any,
+        nftAddress
+    );
+    const Mint = new web3.eth.Contract(
+        MINT_CONTRACT_ABI as any,
+        mintAddress
+    );
+    const refAccount = refId
+        ? referralCodeToAccount(refId)
+        : defaultRef;
+    const correctChainId = chainId && mainChainIds.includes(chainId);
+
+    async function retrievePublicData() {
+        const pr = await Mint.methods.price().call();
+        const maxSupply = await Nft.methods.maxSupply().call();
+        const totalSupply = await Nft.methods.totalSupply().call();
+
+        setCounter(maxSupply - totalSupply);
+        setPrice(web3.utils.fromWei(pr));
+
+        if (account) {
+            const ids = await Nft.methods
+                .getOwnerNFTs(account)
+                .call();
+            const idsToJson = ids.map((id: any) => ({ id }));
+
+            setMine(idsToJson);
+        }
+    }
+
+    async function mint(e: any) {
+        e.preventDefault();
+
+        const value = new BigNumber(
+            web3.utils.toWei(price)
+        ).multipliedBy(Number(amount));
+
+        await Mint.methods.mint(refAccount).send({
+            from: account,
+            value,
+            gas: 1300000 + 2000000 * amount,
+        });
+    }
+
+    useEffect(() => {
+        const id = setInterval(retrievePublicData, 10000);
+        retrievePublicData();
+
+        return () => clearInterval(id);
+    }, [account]);
+
     return (
         <div class={cn(s.mint, className)}>
             <form class={cn(s.form)}>
-                <h2 class={s.title}>switch to arbitrum</h2>
+                {!correctChainId ? (
+                    <h2 class={s.title}>switch to arbitrum</h2>
+                ) : (
+                    <h2 class={s.title}>
+                        Mint an ape — {counter || "~"} remaining
+                    </h2>
+                )}
                 <div class={s.counter}>
                     <IconButton
                         icon={<Icon type="minus" />}
@@ -68,8 +169,8 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
                 </div>
                 <MintButton
                     address={account}
-                    price={amount * 0.05}
-                    onMint={() => { }}
+                    price={amount * parseFloat(price)}
+                    onMint={mint}
                     onConnect={connect}
                 />
             </form>
@@ -204,3 +305,6 @@ const Home: FunctionalComponent<HomeProps> = (props) => {
 };
 
 export default Home;
+function referralCodeToAccount(refId: any) {
+    throw new Error("Function not implemented.");
+}
