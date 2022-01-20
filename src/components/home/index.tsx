@@ -1,4 +1,4 @@
-import { FunctionalComponent, h, VNode } from "preact";
+import { FunctionalComponent, h, VNode, Fragment } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import cn from "classnames";
 import Web3 from "web3";
@@ -126,6 +126,7 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
     }
 
     useEffect(() => {
+        console.log("SET INTERVAL");
         const id = setInterval(retrievePublicData, 10000);
         retrievePublicData();
 
@@ -134,12 +135,22 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
 
     return (
         <div class={cn(s.mint, className)}>
-            <form class={cn(s.form)}>
+            <div class={cn(s.form)}>
                 {!correctChainId ? (
-                    <h2 class={s.title}>switch to arbitrum</h2>
+                    <h2 class={s.title}>
+                        <span
+                            class={s.link}
+                            onClick={() => addMainnetNetwork(provider)}
+                        >
+                            switch
+                        </span>
+                        <span>to arbitrum</span>
+                    </h2>
                 ) : (
                     <h2 class={s.title}>
-                        Mint an ape — {counter || "~"} remaining
+                        Mint an ape
+                        <br />
+                        {counter || "—"} remaining
                     </h2>
                 )}
                 <div class={s.counter}>
@@ -173,7 +184,7 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
                     onMint={mint}
                     onConnect={connect}
                 />
-            </form>
+            </div>
         </div>
     );
 };

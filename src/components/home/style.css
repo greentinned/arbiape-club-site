@@ -79,11 +79,20 @@ input[type="number"] {
 .mint .title {
     display: flex;
     flex-grow: 1;
+    flex-wrap: wrap;
 }
 
 .mint .amount {
     width: 64px;
     text-align: center;
+}
+
+.mint .link {
+    cursor: pointer;
+    text-decoration: underline;
+    opacity: 0.8;
+}
+.mint .link:hover {
 }
 
 @media only screen and (min-width: 768px) {
