@@ -52,3 +52,6 @@
     cursor: no-drop;
     opacity: 0.5;
 }
+.disabled:hover {
+    transform: none !important;
+}

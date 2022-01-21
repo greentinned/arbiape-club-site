@@ -28,7 +28,9 @@ const MintButton: FC<MintButtonProps> = (props) => {
                     : "Connect"
             }
             disabled={disabled}
-            onClick={address ? onMint : onConnect}
+            onClick={
+                !disabled ? (address ? onMint : onConnect) : undefined
+            }
         />
     );
 };

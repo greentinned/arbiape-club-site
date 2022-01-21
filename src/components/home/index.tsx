@@ -140,9 +140,11 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
                     <h2 class={s.title}>
                         <span
                             class={s.link}
-                            onClick={() => addMainnetNetwork(provider)}
+                            onClick={() =>
+                                addMainnetNetwork(provider)
+                            }
                         >
-                            switch
+                            Switch
                         </span>
                         <span>to arbitrum</span>
                     </h2>
@@ -183,7 +185,9 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
                     price={amount * parseFloat(price)}
                     onMint={async () => await mint()}
                     onConnect={connect}
-                    disabled={!correctChainId}
+                    disabled={
+                        account && !correctChainId
+                    }
                 />
             </div>
         </div>
