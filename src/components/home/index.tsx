@@ -16,6 +16,7 @@ import {
     NFT_CONTRACT_ABI,
     MINT_CONTRACT_ABI,
 } from "../../data/chain_info";
+import { referralCodeToAccount } from "../../utils/referral";
 
 const hiddenMd = "hidden-md hidden-lg hidden-xl";
 const visibleMd = "hidden-xs hidden-sm";
@@ -40,6 +41,7 @@ function addMainnetNetwork(provider: any) {
         params: [
             {
                 chainId: "0xa4b1",
+                // chainId: mainChainIds[1],
                 chainName: "Arbitrum One",
                 nativeCurrency: {
                     name: "Ethereum",
@@ -47,6 +49,7 @@ function addMainnetNetwork(provider: any) {
                     decimals: 18,
                 },
                 rpcUrls: ["https://arb1.arbitrum.io/rpc"],
+                // rpcUrls: [rpc],
                 blockExplorerUrls: ["https://arbiscan.io"],
             },
         ],
@@ -106,6 +109,7 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
                 .getOwnerNFTs(account)
                 .call();
             const idsToJson = ids.map((id: any) => ({ id }));
+            console.log(idsToJson);
 
             setMine(idsToJson);
         }
@@ -126,7 +130,6 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
     }
 
     useEffect(() => {
-        console.log("SET INTERVAL");
         const id = setInterval(retrievePublicData, 10000);
         retrievePublicData();
 
@@ -185,11 +188,16 @@ const Mint: FunctionalComponent<MintProps> = (props) => {
                     price={amount * parseFloat(price)}
                     onMint={async () => await mint()}
                     onConnect={connect}
-                    disabled={
-                        account && !correctChainId
-                    }
+                    disabled={account && !correctChainId}
                 />
             </div>
+            {account && mineIds.length > 0 && (
+                <div class={s.owning}>
+                    <p>
+                        You own <strong>{1}</strong> ArbiApes
+                    </p>
+                </div>
+            )}
         </div>
     );
 };
@@ -321,6 +329,3 @@ const Home: FunctionalComponent<HomeProps> = (props) => {
 };
 
 export default Home;
-function referralCodeToAccount(refId: any) {
-    throw new Error("Function not implemented.");
-}

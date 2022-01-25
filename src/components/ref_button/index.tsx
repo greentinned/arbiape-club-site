@@ -1,7 +1,7 @@
 import { FunctionalComponent as FC, h } from "preact";
 import { useState } from "preact/hooks";
 import copyToCb from "copy-to-clipboard";
-import { addressToReferralCode } from "../../utils/referral";
+import { accountToReferralCode } from "../../utils/referral";
 import Button from "../button";
 
 interface RefButtonProps {
@@ -12,7 +12,7 @@ interface RefButtonProps {
 const RefButton: FC<RefButtonProps> = (props) => {
     const { address, onConnect } = props;
     const [isCopied, setCopied] = useState(false);
-    const refCode = addressToReferralCode(address);
+    const refCode = accountToReferralCode(address);
     const link = `${window.location.href}/?ref=${refCode}`;
 
     const copy = () => {

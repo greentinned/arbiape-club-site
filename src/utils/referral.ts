@@ -21,7 +21,7 @@ const crypt = (str: string, shift = 13): string => {
         .join("");
 };
 
-export function addressToReferralCode(
+export function accountToReferralCode(
     address?: string
 ): string | undefined {
     if (address) {
@@ -32,7 +32,7 @@ export function addressToReferralCode(
     return undefined;
 }
 
-export function referralCodeToAddress(
+export function referralCodeToAccount(
     code?: string
 ): string | undefined {
     if (code) return `0x${crypt(code)}`;

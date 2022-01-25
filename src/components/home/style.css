@@ -39,6 +39,15 @@
     align-items: center;
     gap: 24px;
 }
+
+@media only screen and (min-width: 768px) {
+    .mint .form {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
 .mint .form h2 {
     margin: 0;
 }
@@ -57,6 +66,21 @@
     text-align: center;
     width: 128px;
 }
+.mint .owning {
+    margin-top: 16px;
+    padding: 8px;
+    background: white;
+    color: #9561d4;
+    text-align: center;
+    border-radius: 12px;
+}
+@media only screen and (max-width: 768px) {
+    .mint .owning {
+        margin-top: 32px;
+        text-align: center;
+    }
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -94,14 +118,6 @@ input[type="number"] {
     opacity: 0.8;
 }
 .mint .link:hover {
-}
-
-@media only screen and (min-width: 768px) {
-    .mint .form {
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-    }
 }
 
 .description {
